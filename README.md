@@ -1,3 +1,260 @@
+# 移动互联网社区系统 #
+
+**项目名称：移动互联网社区系统**
+ 
+**班&emsp;&emsp;期：PHP S70期**
+
+**组&emsp;&emsp;名：PHPer Team**
+
+**组&emsp;&emsp;员：张明明**
+
+&ensp;&#8194;&emsp;&#8195;&emsp;&emsp;**马成军(以下称:Michael)**  
+
+## 需求说明书 ##
+
+### <a href="http://101.132.107.198" target="_blank">小钉铛QA社区系统</a> ###
+
+文件状态 | 文件标识 | ThinkPHP 5.0.14 移动互联网社区系统
+:----: | :------: | :----:
+[ √ ] 草 稿 | 当前版本  | 1.0
+[ _ ] 正式发布 | 作 者  | 张明明、Michael
+[ _ ] 正在修改 | 完成日期  | 2018年1月10日21:04:58
+
+
+## 开发流程 ##
+
+
+## 设计说明书 ##
+
+> ### 前台模块 ###
+
+    此模块由PHPer攻城狮张明明负责设计和优化
+    
+#### 登录注册 ####
+
+    登录模板借鉴：\010\DeathGhost\login.html
+    注册模板借鉴：待定
+
+使用到的技术：
+
+- 引入Bootstrap、Layui、jQuery框架
+- 支持奥森图标 Font Awesome
+- 登录需要验证用户信息— —Model层应用；
+- 需要验证手机号，填写手机号验证码
+- 需要验证图形码，填写验证码
+- [登录]需要额外支持QQ互联登录及绑定用户信息
+- [注册]需要额外验证邮箱
+
+预期达到的效果：
+
+- AJAX不跳转页面，请求验证
+- layer弹出层提示跳转
+- 样式统一
+
+> PS：用户添加有三种渠道：
+    
+    1. 后台管理员添加
+    2. 前台直接注册
+    3. QQ互联完善(绑定注册)
+
+*用户中心及QQ互联的简介待攻城狮 @张明明 补全*
+
+
+具体控制器及方法分布：
+![](https://i.imgur.com/mOzphBq.png)
+
+
+----------
+
+
+> ### 后台模块 ###
+    
+    此模块由PHPer攻城狮马成军负责设计和优化
+    
+#### 后台登录 ####
+
+    登录模板借鉴：\layuicms\page\login\login.html
+    主页模板借鉴：\Admin_win10UI\demo.html
+    用户管理借鉴：\X-admin\member-list.html[用户列表]
+                    &member-add.html[添加用户]
+                    &member-edit.html[编辑用户]
+                    &member-password.html[修改密码]
+                    &member-del.html[恢复用户]
+    [修改状态][软删除][批量删除][恢复][批量恢复]
+    系统信息借鉴：\X-admin\welcome.html
+使用到的技术：
+
+- 引入Bootstrap、Layui、jQuery框架
+- 支持奥森图标 Font Awesome
+- 登录需要验证管理员信息— —Model层应用；
+- 需要验证手机号，填写手机号验证码
+- 需要验证图形码，填写验证码
+
+预期达到的效果：
+
+- AJAX不跳转页面，请求验证
+- layer弹出层提示跳转
+- 样式统一
+
+> PS：后台不开放注册功能，管理员添加的渠道
+    
+    1. 由拥有root权限的管理员从后台添加，并激活使用;
+    2. 后期可 开放手机号码 验证体验，进入后台验证邮箱;
+    3. 体验管理员账号 仅拥有查询、查看所有用户的只读权限，可编辑补全自身信息;
+    4. 可提交root管理员审核开放其他权限转至普通管理员。
+   
+#### 用户管理 ####
+    - 列表分页显示
+    - 添加
+    - 编辑
+      - 更新基本信息
+      - 修改状态
+      - 修改密码
+    - 删除
+      - 软删除
+      - 批量恢复
+      - 批量删除 
+    - 搜索分页
+      - 日期范围搜索
+      - bootstrap分页
+      - layui分页
+    
+#### 管理中心 ####
+
+              
+#### 角色管理 ####
+
+    超级管理员
+    普通管理员
+    体验管理员
+    用户
+        
+#### 权限管理 ####
+    
+    超级管理员：
+        只有一位
+        拥有至高无上的root权限
+        不可删除自身账号(与系统同在)
+    
+    普通管理员：
+        上不封顶
+        可管理所有用户，拥有绝对权限
+        不可查看、删除其它管理员
+        不可删除自身账号
+    
+    体验账号：
+        至多10位
+        仅拥有只读权限，查看所有用户
+        可编辑、补全个人信息等
+        仅可只能向超级管理员申请[普通管理员]权限
+        
+    用户：
+        上不封顶
+        仅拥有在前台的权限，无权登录后台
+    
+具体控制器及方法分布：
+![](https://i.imgur.com/QNwT8ie.png)
+
+## 数据库构建 ##
+
+用户表：
+
+    DROP TABLE IF EXISTS `com_user`;
+    CREATE TABLE `com_user`  (
+    `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增ID-用户',
+    `icon` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL COMMENT '头像',
+    `nickname` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL COMMENT '登录账号名(可作为登录凭证)',
+    `name` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT '真实姓名-用户',
+    `password` varchar(32) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL COMMENT '登录密码',
+    `sex` tinyint(2) NOT NULL COMMENT '性别-0:女;1:男;2:保密',
+    `age` tinyint(3) NULL DEFAULT NULL COMMENT '年龄-1~299岁',
+    `mobile` int(11) NULL DEFAULT NULL COMMENT '手机号-联系方式(可作为登录凭证)',
+    `email` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT '邮箱-邮箱地址(可作为登录凭证)',
+    `address` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL COMMENT '地址-联系地址(三、四级联动)',
+    `status` tinyint(1) NOT NULL COMMENT '状态-0:禁用;1-启用',
+    `sign` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT '个性签名',
+    `create_time` int(11) NOT NULL COMMENT '注册创建时间',
+    `update_time` int(11) NULL DEFAULT NULL COMMENT '更新时间',
+    `delete_time` int(11) NULL DEFAULT NULL COMMENT '删除时间',
+    `is_delete` int(11) NULL DEFAULT NULL COMMENT '允许删除',
+    PRIMARY KEY (`id`) USING BTREE
+    ) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Dynamic;
+
+管理员表
+    
+    DROP TABLE IF EXISTS `com_admin`;
+    CREATE TABLE `com_admin`  (
+      `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增ID-管理员',
+      `icon` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL COMMENT '头像',
+      `nickname` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL COMMENT '登录账号名(可作为登录凭证)',
+      `name` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT '真实姓名-管理员',
+      `password` varchar(32) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL COMMENT '登录密码',
+      `sex` tinyint(2) NOT NULL COMMENT '性别-0:女;1:男;2:保密',
+      `age` tinyint(3) NULL DEFAULT NULL COMMENT '年龄-1~299岁',
+      `mobile` int(20) NULL DEFAULT NULL COMMENT '手机号-联系方式(可作为登录凭证)',
+      `email` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT '邮箱-邮箱地址(可作为登录凭证)',
+      `address` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL COMMENT '地址-联系地址(三、四级联动)',
+      `status` tinyint(1) NOT NULL COMMENT '状态-0:禁用;1-启用',
+      `sign` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT '个性签名',
+      `create_time` int(11) NOT NULL COMMENT '注册创建时间',
+      `update_time` int(11) NULL DEFAULT NULL COMMENT '更新时间',
+      `delete_time` int(11) NULL DEFAULT NULL COMMENT '删除时间',
+      `is_delete` int(11) NULL DEFAULT NULL COMMENT '允许删除',
+      PRIMARY KEY (`id`) USING BTREE
+    ) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Dynamic;
+    
+角色表
+
+    DROP TABLE IF EXISTS `com_role`;
+    CREATE TABLE `com_role`  (
+      `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '角色ID',
+      `name` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT '角色名称',
+      `describe` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT '角色说明介绍',
+      `status` tinyint(1) NULL DEFAULT NULL COMMENT '角色状态',
+      `create_time` int(11) NULL DEFAULT NULL COMMENT '角色创建时间',
+      `update_time` int(11) NULL DEFAULT NULL COMMENT '角色更新时间',
+      `delete_time` int(11) NULL DEFAULT NULL COMMENT '角色删除时间',
+      `is_delete` int(11) NULL DEFAULT NULL COMMENT '允许删除',
+      PRIMARY KEY (`id`) USING BTREE
+    ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Dynamic;
+
+权限表
+
+    DROP TABLE IF EXISTS `com_rule`;
+    CREATE TABLE `com_rule`  (
+      `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '权限ID',
+      `name` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT '权限名称',
+      `describe` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT '权限说明介绍',
+      `status` tinyint(1) NULL DEFAULT NULL COMMENT '权限状态',
+      `create_time` int(11) NULL DEFAULT NULL COMMENT '权限创建时间',
+      `update_time` int(11) NULL DEFAULT NULL COMMENT '权限更新时间',
+      `delete_time` int(11) NULL DEFAULT NULL COMMENT '权限删除时间',
+      `is_delete` int(11) NULL DEFAULT NULL COMMENT '允许删除',
+      PRIMARY KEY (`id`) USING BTREE
+    ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Dynamic;
+    
+管理员_角色表
+
+    DROP TABLE IF EXISTS `com_admin_role`;
+    CREATE TABLE `com_admin_role`  (
+      `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '管理员_角色表ID',
+      `admin_id` int(11) NULL DEFAULT NULL COMMENT '管理员ID',
+      `role_id` int(11) NULL DEFAULT NULL COMMENT '角色ID',
+      PRIMARY KEY (`id`) USING BTREE
+    ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Dynamic;
+    
+角色_权限表
+
+    DROP TABLE IF EXISTS `com_role_rule`;
+    CREATE TABLE `com_role_rule`  (
+      `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '角色_权限表ID',
+      `admin_id` int(11) NULL DEFAULT NULL COMMENT '角色ID',
+      `role_id` int(11) NULL DEFAULT NULL COMMENT '权限ID',
+      PRIMARY KEY (`id`) USING BTREE
+    ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Dynamic;
+    
+
+
 ThinkPHP 5.0
 ===============
 
