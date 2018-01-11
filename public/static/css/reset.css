@@ -1,0 +1,15 @@
+
+ol,ul {list-style: none;}
+a:link,a:visited,a:hover,a:active{text-decoration:none;} 
+.mt10{margin-top:10px;}
+.mt20{margin-top:20px;}
+.mt30{margin-top:30px;}
+.mt40{margin-top:40px;}
+.mt50{margin-top:40px;}
+.p10{padding: 10px;}
+.p20{padding: 20px;}
+.p30{padding: 30px;}
+.p40{padding: 40px;}
+.p50{padding: 50px;}
+
+
