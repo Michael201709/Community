@@ -1,10 +1,13 @@
 <?php
+
 namespace app\index\controller;
 
-class Index
+use app\admin\controller\Base;
+
+class Index extends Base
 {
     public function index()
     {
-        return '我就是个首页而已~';
+        return $this->view->fetch();
     }
 }
