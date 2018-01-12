@@ -15,4 +15,9 @@ class Index extends Base
     {
         return $this->view->fetch();
     }
+
+    public function regist()
+    {
+        return $this->view->fetch();
+    }
 }
