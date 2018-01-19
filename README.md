@@ -10,6 +10,88 @@
 
 &ensp;&#8194;&emsp;&#8195;&emsp;&emsp;**马成军(以下称:Michael)**  
 
+## 作品展示 #
+[https://pan.baidu.com/s/1kW4rg5h](https://pan.baidu.com/s/1kW4rg5h "作品展示")
+
+### 以下为后台管理界面： ###
+> 后台登录
+
+![](https://i.imgur.com/NCH98wK.jpg)
+
+> 后台主页
+
+![](https://i.imgur.com/W3fVbQa.png)
+
+> 管理界面
+
+![](https://i.imgur.com/2vaeId1.png)
+
+> 消息提示
+
+![](https://i.imgur.com/nKKFBuD.png)
+
+> 系统信息
+
+![](https://i.imgur.com/DuqRX9u.png)
+
+> 用户中心
+
+![](https://i.imgur.com/ZvXBnwY.png)
+
+> 文章管理
+
+![](https://i.imgur.com/5BX8OlO.png)
+
+> 友链管理
+
+![](https://i.imgur.com/zoTtbio.png)
+
+----------
+### 以下为前端展示内容：###
+
+> 前端注册
+
+![](https://i.imgur.com/zdHvwmy.jpg)
+
+> 前端登录
+
+![](https://i.imgur.com/jwXnSrh.png)
+
+> 首页列表
+
+![](https://i.imgur.com/BNqwMak.png)
+
+> 搜索
+
+![](https://i.imgur.com/s3tIWVM.png)
+
+> 搜索列表
+
+![](https://i.imgur.com/ODTjhAV.png)
+
+> 搜索分页
+
+![](https://i.imgur.com/OnBP0Vt.png)
+
+> 文章详情
+
+![](https://i.imgur.com/0IAJ5Eu.png)
+
+> 个人中心
+
+![](https://i.imgur.com/sRV6cQa.png)
+
+> 信息修改
+
+![](https://i.imgur.com/ce3f3eH.png)
+
+> 账号绑定
+
+![](https://i.imgur.com/5po8SPI.png)
+
+----------
+
+
 ## 需求说明书 ##
 
 ### <a href="http://www.michaelma.xin/" target="_blank">移动互联网社区系统</a> ###
